@@ -1,19 +1,12 @@
 
 package lab2p2_andreaortez;
 
-import java.util.ArrayList;
-
-/**
- *
- * @author Usuario Autorizado
- */
 public class Usuario {
     
     private String nombre;
     private int edad;
     private String user;
     private String contra;
-    ArrayList usuario = new ArrayList ();
 
     //constructores
     public Usuario (){
@@ -59,14 +52,6 @@ public class Usuario {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    public ArrayList getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(ArrayList usuario) {
-        this.usuario = usuario;
-    }
     
-    //
+//
 }
