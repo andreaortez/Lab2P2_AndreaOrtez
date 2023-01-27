@@ -35,6 +35,12 @@ public class Lab2P2_AndreaOrtez {
                                 if (tipo == 1) {
                                     newC();
                                 }
+                                if (tipo == 2) {
+                                    newE();
+                                }
+                                if (tipo == 3){
+                                    newS();
+                                }
                         }
                     } else {
                         System.out.println("¡SOLO EL ADMINISTRADOR PUEDE INGRESAR!");
@@ -88,8 +94,8 @@ public class Lab2P2_AndreaOrtez {
         int tipo = sc.nextInt();
         return tipo;
     }
-    
-    static Casa newC(){
+
+    static Casa newC() {
         Casa retorno;
         System.out.print("Numero de casa:");
         int nc = sc.nextInt();
@@ -100,12 +106,35 @@ public class Lab2P2_AndreaOrtez {
         int a = sc.nextInt();
         System.out.print("Largo de la casa: ");
         int l = sc.nextInt();
-        System.out.println("Numero de baños: ");
+        System.out.print("Numero de baños: ");
         int b = sc.nextInt();
-        System.out.println("Numero de cuartos: ");
+        System.out.print("Numero de cuartos: ");
         int numc = sc.nextInt();
-        retorno = new Casa (nc,nb,c,a,l,b,numc);
+        retorno = new Casa(nc, nb, c, a, l, b, numc);
         return retorno;
     }
 
+    static Edificio newE() {
+        Edificio retorno;
+        System.out.print("Numero de pisos: ");
+        int np = sc.nextInt();
+        System.out.print("Cantidad de locales: ");
+        int cl = sc.nextInt();
+        System.out.print("Dirección por referencia: ");
+        String d = sc.nextLine();
+        retorno = new Edificio(np, cl, d);
+        return retorno;
+    }
+    
+    static Solar newS(){
+        Solar retorno;
+        System.out.println("Ancho: ");
+        int a = sc.nextInt();
+        System.out.println("Largo: ");
+        int l = sc.nextInt();
+        System.out.println("Dueño: ");
+        String d = sc.nextLine();
+        retorno = new Solar(a,l,d);
+        return retorno;
+    }
 }
