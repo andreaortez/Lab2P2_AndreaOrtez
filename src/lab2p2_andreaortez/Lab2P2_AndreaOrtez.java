@@ -8,38 +8,69 @@ import javax.swing.JColorChooser;
 public class Lab2P2_AndreaOrtez {
 
     static Scanner sc = new Scanner(System.in);
+    static String usuarioA = "", pwA = "";
 
     public static void main(String[] args) {
         int opcion;
-        Usuario U = new Usuario();
         ArrayList registro = new ArrayList();
-        ArrayList usuario = new ArrayList();
-        String usuarioA = "";
+        ArrayList <Usuario> usuario = new ArrayList();
+//        usuario.add(Andrea,19,admin,admin1234);
 
         do {
-            System.out.println("-- MENU --\n" + "1-> Registro de Inmueble/Solar\n" + "2-> Manejo de Estados\n"
+            System.out.print("-- MENU --\n" + "1-> Registro de Inmueble/Solar\n" + "2-> Manejo de Estados\n"
                     + "3-> Log In/Log Out/Sign Up\n" + "4-> Salir\n" + "Ingrese su opcion: ");
             opcion = sc.nextInt();
 
             switch (opcion) {
                 case 1:
-                    System.out.println("1-> Crear Casas/Edificios/Solares\n" + "2-> Listar Casas/Edificios/Solares\n"
-                            + "3-> Modificar Casas/Edificios/Solares\n" + "4-> Borrar Casas/Edificios/Solares\n"
-                            + "5->Vender Casas/Edificios/Solares\n" + "Ingrese su opcion: ");
-                    int op = sc.nextInt();
-
-                    if ("admin".equals(usuarioA)) {
+                    if ("admin".equals(usuarioA) && "admin1234".equals(pwA)) {
+                        System.out.print("\n1-> Crear Casas/Edificios/Solares\n" + "2-> Listar Casas/Edificios/Solares\n"
+                                + "3-> Modificar Casas/Edificios/Solares\n" + "4-> Borrar Casas/Edificios/Solares\n"
+                                + "5->Vender Casas/Edificios/Solares\n" + "Ingrese su opcion: ");
+                        int op = sc.nextInt();
                         int tipo = tipo();
                         switch (op) {
                             case 1:
                                 if (tipo == 1) {
-                                    newC();
+                                    registro.add(newC());
                                 }
                                 if (tipo == 2) {
-                                    newE();
+                                    registro.add(newE());
                                 }
-                                if (tipo == 3){
-                                    newS();
+                                if (tipo == 3) {
+                                    registro.add(newS());
+                                }
+                                break;
+                            case 2:
+                                tipo = tipo();
+                                String s = "";
+                                switch (op) {
+                                    case 1:
+                                        if (tipo == 1) {
+                                            for (Object t : registro) {
+                                                if (t instanceof Casa) {
+                                                    s += "" + registro.indexOf(t) + " - " + t + "\n";
+                                                    System.out.println(s);
+                                                }
+                                            }
+                                        }
+                                        if (tipo == 2) {
+                                            for (Object t : registro) {
+                                                if (t instanceof Edificio) {
+                                                    s += "" + registro.indexOf(t) + " - " + t + "\n";
+                                                    System.out.println(s);
+                                                }
+                                            }
+                                        }
+                                        if (tipo == 3) {
+                                            for (Object t : registro) {
+                                                if (t instanceof Solar) {
+                                                    s += "" + registro.indexOf(t) + " - " + t + "\n";
+                                                    System.out.println(s);
+                                                }
+                                            }
+                                        }
+                                        break;
                                 }
                         }
                     } else {
@@ -47,28 +78,45 @@ public class Lab2P2_AndreaOrtez {
                     }
                     break;
                 case 3:
-                    System.out.println("1-> Log In\n2-> Log Out\n3-> Sign Up");
+                    System.out.print("\n1-> Log In\n2-> Log Out\n3-> Sign Up\nIngrese opción: ");
                     int op2 = sc.nextInt();
+                    sc.nextLine();
 
                     if (op2 == 1) {
                         System.out.print("Username: ");
-                        String usern = sc.nextLine();
-
-                        if (usuario.get(2) == usern) {
+                        String usern = sc.next();
+                        int pos=0;
+                        boolean x = false;
+                        
+                        for (int i = 0; i < usuario.size(); i++) {
+                            if (usuario.get(i).getUser().equals(usern)) {
+                                x=true;
+                                pos=i;
+                            }
+                        }
+                        if (x) {
                             System.out.print("Password: ");
-                            String pw = sc.nextLine();
-                            if (usuario.get(3) == pw) {
+                            String pw = sc.next();
+                            int y=0;
+                            
+                            for (int i = 0; i < usuario.size(); i++) {
+                                if (usuario.get(i).getContra().equals(pw)) {
+                                    y=i;
+                                }
+                            }
+                            if (pos==y) {
                                 usuarioA = usern;
+                                pwA = pw;
                             } else {
-                                System.out.println("¡CONTRASEÑA INCORRECTA");
+                                System.out.println("¡CONTRASEÑA INCORRECTA\n");
                             }
                         } else {
-                            System.out.println("¡EL NOMBRE DE USUARIO NO EXISTE!");
+                            System.out.println("¡EL NOMBRE DE USUARIO NO EXISTE!\n");
                         }
-
+                        System.out.println("¡INICIO DE USUARIO EXITOSO!\n");
                     } else if (op2 == 3) {
                         usuario.add(newU());
-                        System.out.println("¡USUARIO AGREGADO CON ÉXITO!");
+                        System.out.println("¡USUARIO AGREGADO CON ÉXITO!\n");
                     }
             }
         } while (opcion != 4);
@@ -76,16 +124,19 @@ public class Lab2P2_AndreaOrtez {
     }
 
     static Usuario newU() {
-        Usuario retorno;
         System.out.print("Nombre: ");
         String name = sc.nextLine();
         System.out.print("Edad: ");
         int edad = sc.nextInt();
         System.out.print("Username: ");
-        String usern = sc.nextLine();
+        String usern = sc.next();
+        sc.nextLine();
         System.out.print("Password: ");
-        String pw = sc.nextLine();
-        retorno = new Usuario(name, edad, usern, pw);
+        String pw = sc.next();
+        Usuario retorno = new Usuario(name, edad, usern, pw);
+        System.out.println(usern+"--------------");
+        usuarioA = usern;
+        pwA = pw;
         return retorno;
     }
 
@@ -125,8 +176,8 @@ public class Lab2P2_AndreaOrtez {
         retorno = new Edificio(np, cl, d);
         return retorno;
     }
-    
-    static Solar newS(){
+
+    static Solar newS() {
         Solar retorno;
         System.out.println("Ancho: ");
         int a = sc.nextInt();
@@ -134,7 +185,7 @@ public class Lab2P2_AndreaOrtez {
         int l = sc.nextInt();
         System.out.println("Dueño: ");
         String d = sc.nextLine();
-        retorno = new Solar(a,l,d);
+        retorno = new Solar(a, l, d);
         return retorno;
     }
 }
