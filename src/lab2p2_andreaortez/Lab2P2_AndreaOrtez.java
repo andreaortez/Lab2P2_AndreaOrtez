@@ -1,7 +1,9 @@
 package lab2p2_andreaortez;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Scanner;
+import javax.swing.JColorChooser;
 
 public class Lab2P2_AndreaOrtez {
 
@@ -11,8 +13,9 @@ public class Lab2P2_AndreaOrtez {
         int opcion;
         Usuario U = new Usuario();
         ArrayList registro = new ArrayList();
-        ArrayList usuario = new ArrayList ();
-        
+        ArrayList usuario = new ArrayList();
+        String usuarioA = "";
+
         do {
             System.out.println("-- MENU --\n" + "1-> Registro de Inmueble/Solar\n" + "2-> Manejo de Estados\n"
                     + "3-> Log In/Log Out/Sign Up\n" + "4-> Salir\n" + "Ingrese su opcion: ");
@@ -20,6 +23,22 @@ public class Lab2P2_AndreaOrtez {
 
             switch (opcion) {
                 case 1:
+                    System.out.println("1-> Crear Casas/Edificios/Solares\n" + "2-> Listar Casas/Edificios/Solares\n"
+                            + "3-> Modificar Casas/Edificios/Solares\n" + "4-> Borrar Casas/Edificios/Solares\n"
+                            + "5->Vender Casas/Edificios/Solares\n" + "Ingrese su opcion: ");
+                    int op = sc.nextInt();
+
+                    if ("admin".equals(usuarioA)) {
+                        int tipo = tipo();
+                        switch (op) {
+                            case 1:
+                                if (tipo == 1) {
+                                    newC();
+                                }
+                        }
+                    } else {
+                        System.out.println("¡SOLO EL ADMINISTRADOR PUEDE INGRESAR!");
+                    }
                     break;
                 case 3:
                     System.out.println("1-> Log In\n2-> Log Out\n3-> Sign Up");
@@ -32,12 +51,12 @@ public class Lab2P2_AndreaOrtez {
                         if (usuario.get(2) == usern) {
                             System.out.print("Password: ");
                             String pw = sc.nextLine();
-                            if(usuario.get(3) == pw){
-                                
-                            }else{
+                            if (usuario.get(3) == pw) {
+                                usuarioA = usern;
+                            } else {
                                 System.out.println("¡CONTRASEÑA INCORRECTA");
                             }
-                        }else{
+                        } else {
                             System.out.println("¡EL NOMBRE DE USUARIO NO EXISTE!");
                         }
 
@@ -63,4 +82,30 @@ public class Lab2P2_AndreaOrtez {
         retorno = new Usuario(name, edad, usern, pw);
         return retorno;
     }
+
+    static int tipo() {
+        System.out.println("1-> Casa\n2-> Edificio\n3-> Solares");
+        int tipo = sc.nextInt();
+        return tipo;
+    }
+    
+    static Casa newC(){
+        Casa retorno;
+        System.out.print("Numero de casa:");
+        int nc = sc.nextInt();
+        System.out.print("Numero de bloque: ");
+        int nb = sc.nextInt();
+        Color c = JColorChooser.showDialog(null, "Seleccione el color de la casa: ", Color.yellow);
+        System.out.print("Ancho de la casa: ");
+        int a = sc.nextInt();
+        System.out.print("Largo de la casa: ");
+        int l = sc.nextInt();
+        System.out.println("Numero de baños: ");
+        int b = sc.nextInt();
+        System.out.println("Numero de cuartos: ");
+        int numc = sc.nextInt();
+        retorno = new Casa (nc,nb,c,a,l,b,numc);
+        return retorno;
+    }
+
 }
