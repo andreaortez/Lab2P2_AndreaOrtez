@@ -13,7 +13,7 @@ public class Lab2P2_AndreaOrtez {
     public static void main(String[] args) {
         int opcion;
         ArrayList registro = new ArrayList();
-        ArrayList <Usuario> usuario = new ArrayList();
+        ArrayList<Usuario> usuario = new ArrayList();
 //        usuario.add(Andrea,19,admin,admin1234);
 
         do {
@@ -44,30 +44,94 @@ public class Lab2P2_AndreaOrtez {
                             case 2:
                                 tipo = tipo();
                                 String s = "";
-                                switch (op) {
+                                switch (tipo) {
                                     case 1:
-                                        if (tipo == 1) {
-                                            for (Object t : registro) {
-                                                if (t instanceof Casa) {
-                                                    s += "" + registro.indexOf(t) + " - " + t + "\n";
-                                                    System.out.println(s);
-                                                }
+                                        for (Object t : registro) {
+                                            if (t instanceof Casa) {
+                                                s += "" + registro.indexOf(t) + " - " + t + "\n";
+                                                System.out.println(s);
                                             }
                                         }
-                                        if (tipo == 2) {
-                                            for (Object t : registro) {
-                                                if (t instanceof Edificio) {
-                                                    s += "" + registro.indexOf(t) + " - " + t + "\n";
-                                                    System.out.println(s);
-                                                }
+                                        break;
+                                    case 2:
+                                        for (Object t : registro) {
+                                            if (t instanceof Edificio) {
+                                                s += "" + registro.indexOf(t) + " - " + t + "\n";
+                                                System.out.println(s);
                                             }
                                         }
-                                        if (tipo == 3) {
-                                            for (Object t : registro) {
-                                                if (t instanceof Solar) {
-                                                    s += "" + registro.indexOf(t) + " - " + t + "\n";
-                                                    System.out.println(s);
+                                        break;
+                                    case 3:
+                                        for (Object t : registro) {
+                                            if (t instanceof Solar) {
+                                                s += "" + registro.indexOf(t) + " - " + t + "\n";
+                                                System.out.println(s);
+                                            }
+                                        }
+                                        break;
+                                }
+                            case 3://modificar
+                                System.out.println("Ingrese posición a modificar: ");
+                                int p = sc.nextInt();
+
+                                tipo = tipo();
+                                s = "";
+                                switch (tipo) {
+                                    case 1:
+                                        if (registro.get(p) instanceof Casa) {
+                                            System.out.print("\n0-> Numero de casa\n" + "1-> Numero de bloque" + "2-> Color" + "3-> Ancho\n"
+                                                    + "4-> Largo\n" + "5-> Numero de Baños\n" + "6-> Numero de Cuartos\n" + "Ingrese el atributo a modificar: ");
+                                            int ap = sc.nextInt();
+
+                                            System.out.print("Ingrese el dato a modificar: ");
+
+                                            switch (ap) {
+                                                case 0: {
+                                                    int n = sc.nextInt();
+                                                    ((Casa) registro.get(p)).setNcasa(n);
                                                 }
+                                                case 1: {
+                                                    int n = sc.nextInt();
+                                                    ((Casa) registro.get(p)).setNbloque(n);
+                                                }
+                                                case 2: {
+                                                    Color c = JColorChooser.showDialog(null, "Seleccione el color de la casa: ", Color.yellow);
+                                                    ((Casa) registro.get(p)).setC(c);
+                                                }
+                                                case 3: {
+                                                    int n = sc.nextInt();
+                                                    ((Casa) registro.get(p)).setAncho(n);
+                                                }
+                                                case 4: {
+                                                    int n = sc.nextInt();
+                                                    ((Casa) registro.get(p)).setLargo(n);
+                                                }
+                                                case 5: {
+                                                    int n = sc.nextInt();
+                                                    ((Casa) registro.get(p)).setNbaños(n);
+                                                }
+                                                case 6: {
+                                                    int n = sc.nextInt();
+                                                    ((Casa) registro.get(p)).setNcuartos(n);
+                                                }
+                                            }
+                                        } else {
+                                            System.out.println("La posición dada no es válida");
+                                        }
+                                        break;
+                                    case 2:
+                                        if (registro.get(p) instanceof Edificio) {
+                                            System.out.print("\n0-> Numero de casa\n" + "1-> Numero de bloque" + "2-> Color" + "3-> Ancho\n"
+                                                    + "4-> Largo\n" + "5-> Numero de Baños\n" + "6-> Numero de Cuartos\n" + "Ingrese el atributo a modificar: ");
+                                            int ap = sc.nextInt();
+
+                                            System.out.print("Ingrese el dato a modificar: ");
+                                        }
+                                    case 3:
+                                        for (Object t : registro) {
+                                            if (t instanceof Solar) {
+                                                s += "" + registro.indexOf(t) + " - " + t + "\n";
+                                                System.out.println(s);
                                             }
                                         }
                                         break;
@@ -85,26 +149,26 @@ public class Lab2P2_AndreaOrtez {
                     if (op2 == 1) {
                         System.out.print("Username: ");
                         String usern = sc.next();
-                        int pos=0;
+                        int pos = 0;
                         boolean x = false;
-                        
+
                         for (int i = 0; i < usuario.size(); i++) {
                             if (usuario.get(i).getUser().equals(usern)) {
-                                x=true;
-                                pos=i;
+                                x = true;
+                                pos = i;
                             }
                         }
                         if (x) {
                             System.out.print("Password: ");
                             String pw = sc.next();
-                            int y=0;
-                            
+                            int y = 0;
+
                             for (int i = 0; i < usuario.size(); i++) {
                                 if (usuario.get(i).getContra().equals(pw)) {
-                                    y=i;
+                                    y = i;
                                 }
                             }
-                            if (pos==y) {
+                            if (pos == y) {
                                 usuarioA = usern;
                                 pwA = pw;
                             } else {
@@ -134,7 +198,6 @@ public class Lab2P2_AndreaOrtez {
         System.out.print("Password: ");
         String pw = sc.next();
         Usuario retorno = new Usuario(name, edad, usern, pw);
-        System.out.println(usern+"--------------");
         usuarioA = usern;
         pwA = pw;
         return retorno;
@@ -147,7 +210,6 @@ public class Lab2P2_AndreaOrtez {
     }
 
     static Casa newC() {
-        Casa retorno;
         System.out.print("Numero de casa:");
         int nc = sc.nextInt();
         System.out.print("Numero de bloque: ");
@@ -161,31 +223,30 @@ public class Lab2P2_AndreaOrtez {
         int b = sc.nextInt();
         System.out.print("Numero de cuartos: ");
         int numc = sc.nextInt();
-        retorno = new Casa(nc, nb, c, a, l, b, numc);
+        Casa retorno = new Casa(nc, nb, c, a, l, b, numc);
         return retorno;
     }
 
     static Edificio newE() {
-        Edificio retorno;
         System.out.print("Numero de pisos: ");
         int np = sc.nextInt();
         System.out.print("Cantidad de locales: ");
         int cl = sc.nextInt();
         System.out.print("Dirección por referencia: ");
         String d = sc.nextLine();
-        retorno = new Edificio(np, cl, d);
+        sc.next();
+        Edificio retorno = new Edificio(np, cl, d);
         return retorno;
     }
 
     static Solar newS() {
-        Solar retorno;
         System.out.println("Ancho: ");
         int a = sc.nextInt();
         System.out.println("Largo: ");
         int l = sc.nextInt();
         System.out.println("Dueño: ");
         String d = sc.nextLine();
-        retorno = new Solar(a, l, d);
+        Solar retorno = new Solar(a, l, d);
         return retorno;
     }
 }
