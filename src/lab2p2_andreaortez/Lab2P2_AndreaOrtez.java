@@ -73,74 +73,104 @@ public class Lab2P2_AndreaOrtez {
                             case 3://modificar
                                 System.out.println("Ingrese posición a modificar: ");
                                 int p = sc.nextInt();
-
                                 tipo = tipo();
-                                s = "";
-                                switch (tipo) {
-                                    case 1:
-                                        if (registro.get(p) instanceof Casa) {
-                                            System.out.print("\n0-> Numero de casa\n" + "1-> Numero de bloque" + "2-> Color" + "3-> Ancho\n"
-                                                    + "4-> Largo\n" + "5-> Numero de Baños\n" + "6-> Numero de Cuartos\n" + "Ingrese el atributo a modificar: ");
-                                            int ap = sc.nextInt();
 
-                                            System.out.print("Ingrese el dato a modificar: ");
+                                if (p >= 0 && p < registro.size()) {
+                                    switch (tipo) {
+                                        case 1:
+                                            if (registro.get(p) instanceof Casa) {
+                                                System.out.print("\n0-> Numero de casa\n" + "1-> Numero de bloque" + "2-> Color" + "3-> Ancho\n"
+                                                        + "4-> Largo\n" + "5-> Numero de Baños\n" + "6-> Numero de Cuartos\n" + "Ingrese el atributo a modificar: ");
+                                                int ap = sc.nextInt();
 
-                                            switch (ap) {
-                                                case 0: {
-                                                    int n = sc.nextInt();
-                                                    ((Casa) registro.get(p)).setNcasa(n);
-                                                }
-                                                case 1: {
-                                                    int n = sc.nextInt();
-                                                    ((Casa) registro.get(p)).setNbloque(n);
-                                                }
-                                                case 2: {
-                                                    Color c = JColorChooser.showDialog(null, "Seleccione el color de la casa: ", Color.yellow);
-                                                    ((Casa) registro.get(p)).setC(c);
-                                                }
-                                                case 3: {
-                                                    int n = sc.nextInt();
-                                                    ((Casa) registro.get(p)).setAncho(n);
-                                                }
-                                                case 4: {
-                                                    int n = sc.nextInt();
-                                                    ((Casa) registro.get(p)).setLargo(n);
-                                                }
-                                                case 5: {
-                                                    int n = sc.nextInt();
-                                                    ((Casa) registro.get(p)).setNbaños(n);
-                                                }
-                                                case 6: {
-                                                    int n = sc.nextInt();
-                                                    ((Casa) registro.get(p)).setNcuartos(n);
+                                                System.out.print("Ingrese el dato a modificar: ");
+
+                                                switch (ap) {
+                                                    case 0: {
+                                                        int n = sc.nextInt();
+                                                        ((Casa) registro.get(p)).setNcasa(n);
+                                                    }
+                                                    case 1: {
+                                                        int n = sc.nextInt();
+                                                        ((Casa) registro.get(p)).setNbloque(n);
+                                                    }
+                                                    case 2: {
+                                                        Color c = JColorChooser.showDialog(null, "Seleccione el color de la casa: ", Color.yellow);
+                                                        ((Casa) registro.get(p)).setC(c);
+                                                    }
+                                                    case 3: {
+                                                        int n = sc.nextInt();
+                                                        ((Casa) registro.get(p)).setAncho(n);
+                                                    }
+                                                    case 4: {
+                                                        int n = sc.nextInt();
+                                                        ((Casa) registro.get(p)).setLargo(n);
+                                                    }
+                                                    case 5: {
+                                                        int n = sc.nextInt();
+                                                        ((Casa) registro.get(p)).setNbaños(n);
+                                                    }
+                                                    case 6: {
+                                                        int n = sc.nextInt();
+                                                        ((Casa) registro.get(p)).setNcuartos(n);
+                                                    }
+                                                    break;
                                                 }
                                             }
-                                        } else {
-                                            System.out.println("La posición dada no es válida");
-                                        }
-                                        break;
-                                    case 2:
-                                        if (registro.get(p) instanceof Edificio) {
-                                            System.out.print("\n0-> Numero de casa\n" + "1-> Numero de bloque" + "2-> Color" + "3-> Ancho\n"
-                                                    + "4-> Largo\n" + "5-> Numero de Baños\n" + "6-> Numero de Cuartos\n" + "Ingrese el atributo a modificar: ");
-                                            int ap = sc.nextInt();
+                                        case 2:
+                                            if (registro.get(p) instanceof Edificio) {
+                                                System.out.print("\n0-> Numero de pisos\n" + "1-> Cantidad de locales" + "2-> Dirección por referencia\n"
+                                                        + "Ingrese el atributo a modificar: ");
+                                                int ap = sc.nextInt();
 
-                                            System.out.print("Ingrese el dato a modificar: ");
-                                        }
-                                    case 3:
-                                        for (Object t : registro) {
-                                            if (t instanceof Solar) {
-                                                s += "" + registro.indexOf(t) + " - " + t + "\n";
-                                                System.out.println(s);
+                                                System.out.print("Ingrese el dato a modificar: ");
+                                                switch (ap) {
+                                                    case 0: {
+                                                        int n = sc.nextInt();
+                                                        ((Edificio) registro.get(p)).setNpisos(n);
+                                                    }
+                                                    case 1: {
+                                                        int n = sc.nextInt();
+                                                        ((Edificio) registro.get(p)).setClocales(n);
+                                                    }
+                                                    case 2: {
+                                                        String n = sc.nextLine();
+                                                        sc.next();
+                                                        ((Edificio) registro.get(p)).setDireccion(n);
+                                                    }
+                                                }
                                             }
-                                        }
-                                        break;
+                                        case 3:
+                                            if (registro.get(p) instanceof Solar) {
+                                                System.out.print("\n0-> Ancho\n" + "1-> Largo" + "2-> Dueño\n"
+                                                        + "Ingrese el atributo a modificar: ");
+                                                int ap = sc.nextInt();
+
+                                                System.out.print("Ingrese el dato a modificar: ");
+                                                switch (ap) {
+                                                    case 0: {
+                                                        int n = sc.nextInt();
+                                                        ((Solar) registro.get(p)).setAncho(n);
+                                                    }
+                                                    case 1: {
+                                                        int n = sc.nextInt();
+                                                        ((Solar) registro.get(p)).setLargo(n);
+                                                    }
+                                                    case 2: {
+                                                        String n = sc.nextLine();
+                                                        sc.next();
+                                                        ((Solar) registro.get(p)).setDueño(n);
+                                                    }
+                                                }
+                                            }
+                                    }
+                                } else {
+                                    System.out.println("¡SOLO EL ADMINISTRADOR PUEDE INGRESAR!");
                                 }
                         }
                     } else {
-                        System.out.println("¡SOLO EL ADMINISTRADOR PUEDE INGRESAR!");
+                        System.out.println("La posición dada no es válida");
                     }
-                    break;
                 case 3:
                     System.out.print("\n1-> Log In\n2-> Log Out\n3-> Sign Up\nIngrese opción: ");
                     int op2 = sc.nextInt();
@@ -178,12 +208,17 @@ public class Lab2P2_AndreaOrtez {
                             System.out.println("¡EL NOMBRE DE USUARIO NO EXISTE!\n");
                         }
                         System.out.println("¡INICIO DE USUARIO EXITOSO!\n");
+                    } else if (op2 == 2) {
+                        usuarioA = "";
+                        pwA = "";
                     } else if (op2 == 3) {
                         usuario.add(newU());
                         System.out.println("¡USUARIO AGREGADO CON ÉXITO!\n");
                     }
             }
-        } while (opcion != 4);
+
+        } while (opcion
+                != 4);
 
     }
 
