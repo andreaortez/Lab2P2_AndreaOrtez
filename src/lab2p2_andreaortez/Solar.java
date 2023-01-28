@@ -50,5 +50,8 @@ public class Solar {
         this.area = area;
     }
     
-    
+    @Override
+    public String toString() {
+        return "Solar\nAncho = " + ancho + "\nLargo = " + largo + "\nArea = " + area + "\nDueño = " + dueño;
+    }
 }

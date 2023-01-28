@@ -19,6 +19,7 @@ public class Lab2P2_AndreaOrtez {
             System.out.print("-- MENU --\n" + "1-> Registro de Inmueble/Solar\n" + "2-> Manejo de Estados\n"
                     + "3-> Log In/Log Out/Sign Up\n" + "4-> Salir\n" + "Ingrese su opcion: ");
             opcion = sc.nextInt();
+            boolean a = false;
 
             switch (opcion) {
                 case 1:
@@ -29,25 +30,27 @@ public class Lab2P2_AndreaOrtez {
                         int op = sc.nextInt();
                         int tipo = tipo();
                         switch (op) {
-                            case 1:
+                            case 1://Agregar
                                 if (tipo == 1) {
                                     registro.add(newC());
+                                    System.out.println("¡CASA AGREGADA CON ÉXITO!\n");
                                 }
                                 if (tipo == 2) {
                                     registro.add(newE());
+                                    System.out.println("¡EDIFICIO AGREGAD0 CON ÉXITO!\n");
                                 }
                                 if (tipo == 3) {
                                     registro.add(newS());
+                                    System.out.println("¡SOLAR AGREGADO CON ÉXITO!\n");
                                 }
                                 break;
-                            case 2:
-                                tipo = tipo();
+                            case 2://listar
                                 String s = "";
                                 switch (tipo) {
                                     case 1:
                                         for (Object t : registro) {
                                             if (t instanceof Casa) {
-                                                s += "" + registro.indexOf(t) + " - " + t + "\n";
+                                                s += "\n" + registro.indexOf(t) + " - " + t + "\n";
                                                 System.out.println(s);
                                             }
                                         }
@@ -55,7 +58,7 @@ public class Lab2P2_AndreaOrtez {
                                     case 2:
                                         for (Object t : registro) {
                                             if (t instanceof Edificio) {
-                                                s += "" + registro.indexOf(t) + " - " + t + "\n";
+                                                s += "\n" + registro.indexOf(t) + " - " + t + "\n";
                                                 System.out.println(s);
                                             }
                                         }
@@ -63,16 +66,15 @@ public class Lab2P2_AndreaOrtez {
                                     case 3:
                                         for (Object t : registro) {
                                             if (t instanceof Solar) {
-                                                s += "" + registro.indexOf(t) + " - " + t + "\n";
+                                                s += "\n" + registro.indexOf(t) + " - " + t + "\n";
                                                 System.out.println(s);
                                             }
                                         }
-                                        break;
                                 }
+                                break;
                             case 3://modificar
                                 System.out.println("Ingrese posición a modificar: ");
                                 int p = sc.nextInt();
-                                tipo = tipo();
 
                                 if (p >= 0 && p < registro.size()) {
                                     switch (tipo) {
@@ -169,7 +171,6 @@ public class Lab2P2_AndreaOrtez {
                             case 4://borrar
                                 System.out.println("Ingrese posición a modificar: ");
                                 p = sc.nextInt();
-                                tipo = tipo();
 
                                 if (p >= 0 && p < registro.size()) {
                                     switch (tipo) {
@@ -192,7 +193,6 @@ public class Lab2P2_AndreaOrtez {
                             case 5://Comprar
                                 System.out.println("Ingrese posición a modificar: ");
                                 p = sc.nextInt();
-                                tipo = tipo();
 
                                 if (p >= 0 && p < registro.size()) {
                                     switch (tipo) {
@@ -214,7 +214,11 @@ public class Lab2P2_AndreaOrtez {
                     } else {
                         System.out.println("La posición dada no es válida");
                     }
-                case 3:
+                    break;
+                case 2://Estados
+                    int tipo = tipo();
+                    break;
+                case 3://Ingresos
                     System.out.print("\n1-> Log In\n2-> Log Out\n3-> Sign Up\nIngrese opción: ");
                     int op2 = sc.nextInt();
                     sc.nextLine();
@@ -285,13 +289,13 @@ public class Lab2P2_AndreaOrtez {
     }
 
     static int tipo() {
-        System.out.println("1-> Casa\n2-> Edificio\n3-> Solares");
+        System.out.print("\n1-> Casa\n2-> Edificio\n3-> Solares\nIngrese opcion: ");
         int tipo = sc.nextInt();
         return tipo;
     }
 
     static Casa newC() {
-        System.out.print("Numero de casa:");
+        System.out.print("Numero de casa: ");
         int nc = sc.nextInt();
         System.out.print("Numero de bloque: ");
         int nb = sc.nextInt();
@@ -304,7 +308,7 @@ public class Lab2P2_AndreaOrtez {
         int b = sc.nextInt();
         System.out.print("Numero de cuartos: ");
         int numc = sc.nextInt();
-        Casa retorno = new Casa(nc, nb, c, a, l, b, numc, "");
+        Casa retorno = new Casa(nc, nb, c, a, l, b, numc, "Sin dueño");
         return retorno;
     }
 
@@ -316,7 +320,7 @@ public class Lab2P2_AndreaOrtez {
         System.out.print("Dirección por referencia: ");
         String d = sc.nextLine();
         sc.next();
-        Edificio retorno = new Edificio(np, cl, d, "");
+        Edificio retorno = new Edificio(np, cl, d, "Sin dueño");
         return retorno;
     }
 
@@ -325,7 +329,7 @@ public class Lab2P2_AndreaOrtez {
         int a = sc.nextInt();
         System.out.println("Largo: ");
         int l = sc.nextInt();
-        Solar retorno = new Solar(a, l, "");
+        Solar retorno = new Solar(a, l, "Sin dueño");
         return retorno;
     }
 }

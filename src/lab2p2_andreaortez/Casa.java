@@ -12,6 +12,8 @@ public class Casa {
     private int nbaños;
     private int ncuartos;
     private String dueño;
+    private String[]estados = {"En construccion", "Lista", "Construccion en Espera", "En espera de Demolicion"};
+    private String estado;
     
     public Casa (){
         
@@ -26,6 +28,7 @@ public class Casa {
         this.nbaños=nbaños;
         this.ncuartos=ncuartos;
         dueño=d;
+        estado = estados[0];
     }
     
     public int getNcasa() {
@@ -91,6 +94,27 @@ public class Casa {
     public void setDueño(String dueño) {
         this.dueño = dueño;
     }
+
+    public String[] getEstados() {
+        return estados;
+    }
+
+    public void setEstados(String[] estados) {
+        this.estados = estados;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
     
-    
+    @Override
+    public String toString() {
+        return "Casa\nNumero de Casa = " + ncasa + "\nNumero de Bloque = " + nbloque + "\nColor = " + c 
+                + "\nAncho = " + ancho + "\nLargo = " + largo + "\nNumero de Baños = " + nbaños + "\nNumero de Cuartos = " 
+                + ncuartos + "\nDueño = " + dueño;
+    }
 }
