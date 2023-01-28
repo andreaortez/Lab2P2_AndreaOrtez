@@ -11,12 +11,13 @@ public class Casa {
     private int largo;
     private int nbaños;
     private int ncuartos;
+    private String dueño;
     
     public Casa (){
         
     }
     
-    public Casa (int ncasa, int nbloque, Color c, int w, int l, int nbaños, int ncuartos){
+    public Casa (int ncasa, int nbloque, Color c, int w, int l, int nbaños, int ncuartos, String d){
         this.ncasa=ncasa;
         this.nbloque=nbloque;
         this.c=c;
@@ -24,6 +25,7 @@ public class Casa {
         this.largo=l;
         this.nbaños=nbaños;
         this.ncuartos=ncuartos;
+        dueño=d;
     }
     
     public int getNcasa() {
@@ -81,5 +83,14 @@ public class Casa {
     public void setNcuartos(int ncuartos) {
         this.ncuartos = ncuartos;
     }
+
+    public String getDueño() {
+        return dueño;
+    }
+
+    public void setDueño(String dueño) {
+        this.dueño = dueño;
+    }
+    
     
 }

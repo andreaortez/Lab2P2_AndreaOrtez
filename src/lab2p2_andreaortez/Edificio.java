@@ -5,15 +5,17 @@ public class Edificio {
     private int npisos;
     private int clocales;
     private String direccion;
+    private String dueño;
     
     public Edificio (){
         
     }
     
-    public Edificio (int np, int cl, String d){
+    public Edificio (int np, int cl, String d, String o){
         npisos=np;
         clocales=cl;
         direccion=d;
+        dueño=o;
     }
 
     public int getNpisos() {
@@ -38,6 +40,14 @@ public class Edificio {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+
+    public String getDueño() {
+        return dueño;
+    }
+
+    public void setDueño(String dueño) {
+        this.dueño = dueño;
     }
     
     

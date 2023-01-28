@@ -8,13 +8,12 @@ import javax.swing.JColorChooser;
 public class Lab2P2_AndreaOrtez {
 
     static Scanner sc = new Scanner(System.in);
-    static String usuarioA = "", pwA = "";
+    static String usuarioA = "", pwA = "", nombre="";
 
     public static void main(String[] args) {
         int opcion;
         ArrayList registro = new ArrayList();
         ArrayList<Usuario> usuario = new ArrayList();
-//        usuario.add(Andrea,19,admin,admin1234);
 
         do {
             System.out.print("-- MENU --\n" + "1-> Registro de Inmueble/Solar\n" + "2-> Manejo de Estados\n"
@@ -26,7 +25,7 @@ public class Lab2P2_AndreaOrtez {
                     if ("admin".equals(usuarioA) && "admin1234".equals(pwA)) {
                         System.out.print("\n1-> Crear Casas/Edificios/Solares\n" + "2-> Listar Casas/Edificios/Solares\n"
                                 + "3-> Modificar Casas/Edificios/Solares\n" + "4-> Borrar Casas/Edificios/Solares\n"
-                                + "5->Vender Casas/Edificios/Solares\n" + "Ingrese su opcion: ");
+                                + "5-> Comprar Casas/Edificios/Solares\n" + "Ingrese su opcion: ");
                         int op = sc.nextInt();
                         int tipo = tipo();
                         switch (op) {
@@ -167,6 +166,50 @@ public class Lab2P2_AndreaOrtez {
                                 } else {
                                     System.out.println("¡SOLO EL ADMINISTRADOR PUEDE INGRESAR!");
                                 }
+                            case 4://borrar
+                                System.out.println("Ingrese posición a modificar: ");
+                                p = sc.nextInt();
+                                tipo = tipo();
+
+                                if (p >= 0 && p < registro.size()) {
+                                    switch (tipo) {
+                                        case 1:
+                                            if (registro.get(p) instanceof Casa) {
+                                                registro.remove(p);
+                                            }
+                                        case 2:
+                                            if (registro.get(p) instanceof Edificio) {
+                                                registro.remove(p);
+                                            }
+                                        case 3:
+                                            if (registro.get(p) instanceof Solar) {
+                                                registro.remove(p);
+                                            }
+                                    }
+                                } else {
+                                    System.out.println("La posición dada no es válida");
+                                }
+                            case 5://Comprar
+                                System.out.println("Ingrese posición a modificar: ");
+                                p = sc.nextInt();
+                                tipo = tipo();
+
+                                if (p >= 0 && p < registro.size()) {
+                                    switch (tipo) {
+                                        case 1:
+                                            if (registro.get(p) instanceof Casa) {
+                                                ((Casa) registro.get(p)).setDueño(nombre);
+                                            }
+                                        case 2:
+                                            if (registro.get(p) instanceof Edificio) {
+                                                ((Edificio) registro.get(p)).setDueño(nombre);
+                                            }
+                                        case 3:
+                                            if (registro.get(p) instanceof Solar) {
+                                                ((Solar) registro.get(p)).setDueño(nombre);
+                                            }   
+                                    }
+                                }
                         }
                     } else {
                         System.out.println("La posición dada no es válida");
@@ -176,7 +219,7 @@ public class Lab2P2_AndreaOrtez {
                     int op2 = sc.nextInt();
                     sc.nextLine();
 
-                    if (op2 == 1) {
+                    if (op2 == 1) {//Log in
                         System.out.print("Username: ");
                         String usern = sc.next();
                         int pos = 0;
@@ -192,15 +235,18 @@ public class Lab2P2_AndreaOrtez {
                             System.out.print("Password: ");
                             String pw = sc.next();
                             int y = 0;
+                            String z= "";
 
                             for (int i = 0; i < usuario.size(); i++) {
                                 if (usuario.get(i).getContra().equals(pw)) {
                                     y = i;
+                                    z = usuario.get(i).getNombre();
                                 }
                             }
                             if (pos == y) {
                                 usuarioA = usern;
                                 pwA = pw;
+                                nombre=z;
                             } else {
                                 System.out.println("¡CONTRASEÑA INCORRECTA\n");
                             }
@@ -208,17 +254,16 @@ public class Lab2P2_AndreaOrtez {
                             System.out.println("¡EL NOMBRE DE USUARIO NO EXISTE!\n");
                         }
                         System.out.println("¡INICIO DE USUARIO EXITOSO!\n");
-                    } else if (op2 == 2) {
+                    } else if (op2 == 2) {//Log out
                         usuarioA = "";
                         pwA = "";
-                    } else if (op2 == 3) {
+                    } else if (op2 == 3) {//Sign in
                         usuario.add(newU());
                         System.out.println("¡USUARIO AGREGADO CON ÉXITO!\n");
                     }
             }
 
-        } while (opcion
-                != 4);
+        } while (opcion != 4);
 
     }
 
@@ -235,6 +280,7 @@ public class Lab2P2_AndreaOrtez {
         Usuario retorno = new Usuario(name, edad, usern, pw);
         usuarioA = usern;
         pwA = pw;
+        nombre=name;
         return retorno;
     }
 
@@ -258,7 +304,7 @@ public class Lab2P2_AndreaOrtez {
         int b = sc.nextInt();
         System.out.print("Numero de cuartos: ");
         int numc = sc.nextInt();
-        Casa retorno = new Casa(nc, nb, c, a, l, b, numc);
+        Casa retorno = new Casa(nc, nb, c, a, l, b, numc, "");
         return retorno;
     }
 
@@ -270,7 +316,7 @@ public class Lab2P2_AndreaOrtez {
         System.out.print("Dirección por referencia: ");
         String d = sc.nextLine();
         sc.next();
-        Edificio retorno = new Edificio(np, cl, d);
+        Edificio retorno = new Edificio(np, cl, d, "");
         return retorno;
     }
 
@@ -279,9 +325,7 @@ public class Lab2P2_AndreaOrtez {
         int a = sc.nextInt();
         System.out.println("Largo: ");
         int l = sc.nextInt();
-        System.out.println("Dueño: ");
-        String d = sc.nextLine();
-        Solar retorno = new Solar(a, l, d);
+        Solar retorno = new Solar(a, l, "");
         return retorno;
     }
 }
