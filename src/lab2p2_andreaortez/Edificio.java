@@ -72,6 +72,6 @@ public class Edificio {
     @Override
     public String toString() {
         return "Edificio\nNúmero de pisos = " + npisos + "\nCantidad de locales = " + clocales
-                + "\nDirección por referenciar = " + direccion + "\nDueño = " + dueño;
+                + "\nDirección por referenciar = " + direccion + "\nDueño = " + dueño + "\nEstado = " + estado;
     }
 }

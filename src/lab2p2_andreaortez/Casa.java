@@ -12,7 +12,7 @@ public class Casa {
     private int nbaños;
     private int ncuartos;
     private String dueño;
-    private String[]estados = {"En construccion", "Lista", "Construccion en Espera", "En espera de Demolicion"};
+    public String[]estados = {"En construccion", "Lista", "Construccion en Espera", "En espera de Demolicion"};
     private String estado;
     
     public Casa (){
@@ -115,6 +115,6 @@ public class Casa {
     public String toString() {
         return "Casa\nNumero de Casa = " + ncasa + "\nNumero de Bloque = " + nbloque + "\nColor = " + c 
                 + "\nAncho = " + ancho + "\nLargo = " + largo + "\nNumero de Baños = " + nbaños + "\nNumero de Cuartos = " 
-                + ncuartos + "\nDueño = " + dueño;
+                + ncuartos + "\nDueño = " + dueño + "\nEstado = " + estado;
     }
 }
